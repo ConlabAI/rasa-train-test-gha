@@ -168,7 +168,8 @@ runs:
         echo DOCKER_ARGS="--rm --tmpfs ${{ inputs.tmpfs_directory }} -e HOME=/app -e MPLCONFIGDIR=/tmp/.mplconfigdir \
           -e CI=${CI} -e RASA_TELEMETRY_ENABLED=${{ env.RASA_TELEMETRY_ENABLED }} -v ${{ github.workspace }}:/app/github_workspace \
           -v ${{ inputs.workspace }}:/app -v ${{ inputs.workspace }}/models:/app/models \
-          -v ${{ inputs.workspace }}/${{ inputs.result_directory }}:/app/results" >> $GITHUB_ENV
+          -v ${{ inputs.workspace }}/${{ inputs.result_directory }}:/app/results" \
+          ${EXTRA_DOCKER_ARGS} >> $GITHUB_ENV
 
         # Set environment variables for generating a report
         echo "SUMMARY_FILE=${{ inputs.workspace }}/reports/report.json" >> $GITHUB_ENV
